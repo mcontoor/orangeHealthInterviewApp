@@ -16,6 +16,16 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* orangeHealthInterviewAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* orangeHealthInterviewAppTests.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		F165D3F52F164852B188BAF2 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF95A9E9F3D340DC874FA63D /* Montserrat-Medium.ttf */; };
+		7D3D2BC324DB4B79852C4004 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A9FB66CB5B54B5B97FF0302 /* Montserrat-Regular.ttf */; };
+		739801A70D3741C2B7965DFE /* add_patient_rx.png in Resources */ = {isa = PBXBuildFile; fileRef = 42D0D7F1BA3844848D2E4827 /* add_patient_rx.png */; };
+		1FCCCE673E8C4E3395496104 /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD62879A53844149F3AE3C5 /* back_icon.png */; };
+		4C9E63B7134C4275BC02FBC2 /* checked_selection.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AE866E6625F4E128EA8932A /* checked_selection.png */; };
+		1D97032968AF4326A7E2B7D3 /* search_doctor_empty_state.png in Resources */ = {isa = PBXBuildFile; fileRef = 56653BBE4CD845F0B274BB4C /* search_doctor_empty_state.png */; };
+		BAF556E1AB7245E599C88135 /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7EE799DA6E7436B8796490B /* search_icon.png */; };
+		0A4688B2644B4104A47254E6 /* step_action.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E33A7B2AA0F4A719DBF0D2C /* step_action.png */; };
+		650B8EED5C4348B396CEF547 /* unchecked_selection.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C8007784C74D14A5539F05 /* unchecked_selection.png */; };
+		E54EBEACF3BF4CD985D6676F /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 924FF80CA3FB4D0A98DD01AE /* Montserrat-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +61,16 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = orangeHealthInterviewApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		BF95A9E9F3D340DC874FA63D /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; name = "Montserrat-Medium.ttf"; path = "../public/assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4A9FB66CB5B54B5B97FF0302 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; name = "Montserrat-Regular.ttf"; path = "../public/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		42D0D7F1BA3844848D2E4827 /* add_patient_rx.png */ = {isa = PBXFileReference; name = "add_patient_rx.png"; path = "../public/assets/icons/add_patient_rx.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8BD62879A53844149F3AE3C5 /* back_icon.png */ = {isa = PBXFileReference; name = "back_icon.png"; path = "../public/assets/icons/back_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9AE866E6625F4E128EA8932A /* checked_selection.png */ = {isa = PBXFileReference; name = "checked_selection.png"; path = "../public/assets/icons/checked_selection.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		56653BBE4CD845F0B274BB4C /* search_doctor_empty_state.png */ = {isa = PBXFileReference; name = "search_doctor_empty_state.png"; path = "../public/assets/icons/search_doctor_empty_state.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C7EE799DA6E7436B8796490B /* search_icon.png */ = {isa = PBXFileReference; name = "search_icon.png"; path = "../public/assets/icons/search_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5E33A7B2AA0F4A719DBF0D2C /* step_action.png */ = {isa = PBXFileReference; name = "step_action.png"; path = "../public/assets/icons/step_action.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		91C8007784C74D14A5539F05 /* unchecked_selection.png */ = {isa = PBXFileReference; name = "unchecked_selection.png"; path = "../public/assets/icons/unchecked_selection.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		924FF80CA3FB4D0A98DD01AE /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; name = "Montserrat-Bold.ttf"; path = "../public/assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +160,7 @@
 				00E356EF1AD99517003FC87E /* orangeHealthInterviewAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				B4253A3018AC481B879D8E0C /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -156,6 +177,24 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		B4253A3018AC481B879D8E0C /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				BF95A9E9F3D340DC874FA63D /* Montserrat-Medium.ttf */,
+				4A9FB66CB5B54B5B97FF0302 /* Montserrat-Regular.ttf */,
+				42D0D7F1BA3844848D2E4827 /* add_patient_rx.png */,
+				8BD62879A53844149F3AE3C5 /* back_icon.png */,
+				9AE866E6625F4E128EA8932A /* checked_selection.png */,
+				56653BBE4CD845F0B274BB4C /* search_doctor_empty_state.png */,
+				C7EE799DA6E7436B8796490B /* search_icon.png */,
+				5E33A7B2AA0F4A719DBF0D2C /* step_action.png */,
+				91C8007784C74D14A5539F05 /* unchecked_selection.png */,
+				924FF80CA3FB4D0A98DD01AE /* Montserrat-Bold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -295,6 +334,16 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F165D3F52F164852B188BAF2 /* Montserrat-Medium.ttf in Resources */,
+				7D3D2BC324DB4B79852C4004 /* Montserrat-Regular.ttf in Resources */,
+				739801A70D3741C2B7965DFE /* add_patient_rx.png in Resources */,
+				1FCCCE673E8C4E3395496104 /* back_icon.png in Resources */,
+				4C9E63B7134C4275BC02FBC2 /* checked_selection.png in Resources */,
+				1D97032968AF4326A7E2B7D3 /* search_doctor_empty_state.png in Resources */,
+				BAF556E1AB7245E599C88135 /* search_icon.png in Resources */,
+				0A4688B2644B4104A47254E6 /* step_action.png in Resources */,
+				650B8EED5C4348B396CEF547 /* unchecked_selection.png in Resources */,
+				E54EBEACF3BF4CD985D6676F /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

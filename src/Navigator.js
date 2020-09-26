@@ -11,7 +11,7 @@ const Navigator = () => {
       <Stack.Navigator
         screenOptions={{animationEnabled: true}}
         initialRouteName="InviteDoctor"
-        headerMode="none">
+        headerMode="float">
         <Stack.Screen component={InviteDoctor} name="InviteDoctor" />
         <Stack.Screen component={FindDoctor} name="FindDoctor" />
       </Stack.Navigator>
