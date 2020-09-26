@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, Pressable, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {View, Text, StyleSheet} from 'react-native';
+import CtaButton from '../../components/Button/CtaButton';
 
 const styles = StyleSheet.create({
   font: {
@@ -9,13 +9,10 @@ const styles = StyleSheet.create({
 });
 
 const InviteDoctor = () => {
-  const {navigate} = useNavigation();
   return (
     <View>
+      <CtaButton />
       <Text style={styles.font}>Invite Doctor</Text>
-      <Pressable onPress={() => navigate('FindDoctor')}>
-        <Text>Find a Doctor</Text>
-      </Pressable>
     </View>
   );
 };
