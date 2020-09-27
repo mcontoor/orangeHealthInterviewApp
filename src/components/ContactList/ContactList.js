@@ -44,7 +44,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const ContactList = ({title, action, contacts, showSelectedCount}) => {
+const ContactList = ({
+  title,
+  action,
+  contacts,
+  showSelectedCount,
+  searchPrefix,
+}) => {
   const [searchString, setSearchString] = useState('');
 
   const [selectedContacts, setSelectedContacts] = useState({});
@@ -87,6 +93,7 @@ const ContactList = ({title, action, contacts, showSelectedCount}) => {
         value={searchString}
         onChangeText={setSearchString}
         placeHolder="Search Contacts"
+        prefix={searchPrefix}
       />
       <FlatList
         style={styles.listStyle}

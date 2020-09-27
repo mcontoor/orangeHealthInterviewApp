@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingRight: 22,
+    paddingLeft: 24,
     shadowRadius: 10,
     elevation: 10,
     backgroundColor: '#fff',
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Regular',
     fontSize: 16,
     textAlign: 'left',
-    paddingLeft: 24,
     width: '80%',
   },
   prefix: {
