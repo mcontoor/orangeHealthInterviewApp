@@ -42,6 +42,8 @@ const styles = StyleSheet.create({
   contactsTextStyle: {
     fontFamily: 'Montserrat-Medium',
     fontSize: 14,
+    lineHeight: 24,
+    color: '#616161',
   },
 });
 
@@ -115,13 +117,19 @@ const ContactList = ({
     searchString.length >= requiredCharLength &&
     !filteredContacts.length;
 
+  useEffect(() => {
+    if (displayEmptySearchPlaceholder) {
+      setSelectedContacts({});
+    }
+  }, [displayEmptySearchPlaceholder]);
+
   return (
     <View style={styles.body}>
       <View style={styles.titleStyle}>
         {title}
         {showSelectedCount && (
           <Text style={styles.contactsTextStyle}>
-            {selectedContactsLength} contact selected
+            {selectedContactsLength} contacts selected
           </Text>
         )}
       </View>
@@ -151,7 +159,7 @@ const ContactList = ({
               }
               info={item.info}
               onPress={() => onSelectContact(item)}
-              isSelected={selectedContacts[item.id]}
+              isSelected={!!selectedContacts[item.id]}
             />
           )}
         />

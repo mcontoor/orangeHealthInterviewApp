@@ -75,9 +75,9 @@ const Contact = ({name, thumbnail, info, onPress, isSelected}) => {
 };
 
 Contact.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   thumbnail: PropTypes.object,
-  info: PropTypes.string,
+  info: PropTypes.string.isRequired,
   onPress: PropTypes.func,
   isSelected: PropTypes.bool,
 };
