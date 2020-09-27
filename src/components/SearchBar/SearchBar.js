@@ -4,6 +4,9 @@ import {View, StyleSheet, TextInput, Image, Text} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+  },
+  input: {
+    width: '100%',
     height: 52,
     borderRadius: 4,
     flexDirection: 'row',
@@ -26,20 +29,30 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Medium',
     fontSize: 16,
   },
+  errorText: {
+    color: '#ec2637',
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 14,
+    marginTop: 16,
+    textAlign: 'center',
+  },
 });
 
-const SearchBar = ({value, onChangeText, placeHolder, prefix}) => {
+const SearchBar = ({value, onChangeText, placeHolder, prefix, error}) => {
   return (
     <View style={styles.container}>
-      {prefix && <Text style={styles.prefix}>{prefix}</Text>}
-      <TextInput
-        style={styles.searchBar}
-        value={value}
-        onChangeText={onChangeText}
-        placeholder={placeHolder}
-        placeholderTextColor="#616161"
-      />
-      <Image source={require('../../icons/search_icon.png')} />
+      <View style={styles.input}>
+        {prefix && <Text style={styles.prefix}>{prefix}</Text>}
+        <TextInput
+          style={styles.searchBar}
+          value={value}
+          onChangeText={onChangeText}
+          placeholder={placeHolder}
+          placeholderTextColor="#616161"
+        />
+        <Image source={require('../../icons/search_icon.png')} />
+      </View>
+      {!!error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
 };
