@@ -10,8 +10,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginTop: 30,
-    marginHorizontal: 25,
+    marginHorizontal: 17,
     marginBottom: 20,
+    paddingHorizontal: 8,
   },
   actionButton: {
     backgroundColor: '#ff970a',
