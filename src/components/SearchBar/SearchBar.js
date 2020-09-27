@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, TextInput, Image} from 'react-native';
+import {View, StyleSheet, TextInput, Image, Text} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,11 +22,16 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
     width: '80%',
   },
+  prefix: {
+    fontFamily: 'Montserrat-Medium',
+    fontSize: 16,
+  },
 });
 
-const SearchBar = ({value, onChangeText, placeHolder}) => {
+const SearchBar = ({value, onChangeText, placeHolder, prefix}) => {
   return (
     <View style={styles.container}>
+      {prefix && <Text style={styles.prefix}>{prefix}</Text>}
       <TextInput
         style={styles.searchBar}
         value={value}
