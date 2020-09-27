@@ -7,7 +7,6 @@ import {filterByKeyword} from '../../utils';
 
 const styles = StyleSheet.create({
   body: {
-    flex: 1,
     alignItems: 'center',
     marginTop: 30,
     marginHorizontal: 25,
@@ -50,6 +49,10 @@ const ContactList = ({
   contacts,
   showSelectedCount,
   searchPrefix,
+  onSearchByText,
+  error,
+  allowMultipleSelect,
+  containerStyle,
 }) => {
   const [searchString, setSearchString] = useState('');
 
@@ -57,18 +60,28 @@ const ContactList = ({
 
   const onSelectContact = useCallback(
     (contact) => {
-      if (selectedContacts[contact.recordID]) {
-        const updatedContacts = {...selectedContacts};
-        delete updatedContacts[contact.recordID];
-        setSelectedContacts(updatedContacts);
+      if (allowMultipleSelect) {
+        if (selectedContacts[contact.id]) {
+          const updatedContacts = {...selectedContacts};
+          delete updatedContacts[contact.id];
+          setSelectedContacts(updatedContacts);
+        } else {
+          setSelectedContacts((prevSelectedContacts) => ({
+            ...prevSelectedContacts,
+            [contact.id]: contact,
+          }));
+        }
       } else {
-        setSelectedContacts((prevSelectedContacts) => ({
-          ...prevSelectedContacts,
-          [contact.recordID]: contact,
-        }));
+        setSelectedContacts((prevContact) => {
+          if (prevContact[contact.id]) {
+            return {};
+          } else {
+            return {[`${contact.id}`]: contact};
+          }
+        });
       }
     },
-    [selectedContacts],
+    [selectedContacts, allowMultipleSelect],
   );
 
   const filteredContacts = useMemo(
@@ -76,10 +89,18 @@ const ContactList = ({
     [searchString, contacts],
   );
 
+  const onChangeText = useCallback(
+    (text) => {
+      setSearchString(text);
+      onSearchByText && onSearchByText(text);
+    },
+    [onSearchByText],
+  );
+
   const selectedContactsLength = Object.keys(selectedContacts).length;
 
   return (
-    <View style={styles.body}>
+    <View style={[styles.body, containerStyle]}>
       <View style={styles.titleStyle}>
         {title}
         {showSelectedCount && (
@@ -91,23 +112,25 @@ const ContactList = ({
 
       <SearchBar
         value={searchString}
-        onChangeText={setSearchString}
+        onChangeText={onChangeText}
         placeHolder="Search Contacts"
         prefix={searchPrefix}
+        error={error}
       />
       <FlatList
         style={styles.listStyle}
         data={filteredContacts}
-        keyExtractor={(item) => item.recordID}
+        keyExtractor={(item) => `${item.id}`}
         renderItem={({item}) => (
           <Contact
-            key={item.recordID}
-            name={item.displayName}
+            key={item.id}
+            name={item.name}
             thumbnail={
               item.hasThumbnail ? {uri: item.thumbnailPath} : undefined
             }
-            number={item.phoneNumbers?.number}
+            info={item.info}
             onPress={() => onSelectContact(item)}
+            isSelected={selectedContacts[item.id]}
           />
         )}
       />
