@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import Button from '../Button/Button';
 import Avatar from '../Avatar/Avatar';
@@ -31,13 +31,20 @@ const styles = StyleSheet.create({
   },
 });
 
-const Contact = ({name, thumbnail, number, isSelected, onPress}) => {
+const Contact = ({name, thumbnail, number, onPress}) => {
+  const [isSelected, setIsSelected] = useState(false);
   const unSelectedIcon = (
     <Image source={require('../../icons/unchecked_selection.png')} />
   );
   const selectedIcon = (
     <Image source={require('../../icons/checked_selection.png')} />
   );
+
+  const onSelectContact = useCallback(() => {
+    setIsSelected((prevSelection) => !prevSelection);
+    onPress();
+  }, [onPress]);
+
   const placeholder = name
     .split(' ')
     .slice(0, 2)
@@ -45,7 +52,7 @@ const Contact = ({name, thumbnail, number, isSelected, onPress}) => {
     .join('')
     .toUpperCase();
   return (
-    <Button style={styles.contactStyle} onPress={onPress}>
+    <Button style={styles.contactStyle} onPress={onSelectContact}>
       <Avatar img={thumbnail} placeholder={placeholder} />
       <View style={styles.contactInfo}>
         <Text style={styles.name}>{name}</Text>
