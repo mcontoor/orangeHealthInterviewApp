@@ -1,5 +1,11 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {View, Text, StyleSheet, PermissionsAndroid} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  PermissionsAndroid,
+  Platform,
+} from 'react-native';
 import CtaButton from '../../components/Button/CtaButton';
 import ContactList from '../../components/ContactList/ContactList';
 import Contacts from 'react-native-contacts';
@@ -45,25 +51,31 @@ const InviteDoctor = () => {
 
   const [contactList, setContactList] = useState([]);
 
-  useEffect(() => {
-    PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
-      title: 'Contacts',
-      message: 'This app would like to view your contacts.',
-      buttonPositive: 'Please accept bare mortal',
-    })
-      .then(() => {
-        Contacts.getAll((err, contacts) => {
-          if (err === 'denied') {
-            // error
-            console.log(err);
-          } else {
-            // contacts returned in Array
-            setContactList(contacts);
-          }
-        });
-      })
-      .catch((e) => console.log(e));
+  const loadContacts = useCallback(() => {
+    Contacts.getAll((err, contacts) => {
+      if (err === 'denied') {
+        console.warn('Permission to access contacts was denied');
+      } else {
+        setContactList(contacts);
+      }
+    });
   }, []);
+
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
+        title: 'Contacts',
+        message: 'This app would like to view your contacts.',
+        buttonPositive: 'Please accept bare mortal',
+      })
+        .then(() => {
+          loadContacts();
+        })
+        .catch((e) => console.log(e));
+    } else {
+      loadContacts();
+    }
+  }, [loadContacts]);
 
   console.log(contactList[10]);
 
@@ -71,7 +83,7 @@ const InviteDoctor = () => {
     <View style={styles.body}>
       <CtaButton />
       <ContactList
-        contacts={[contactList[0], contactList[1], contactList[2]]}
+        contacts={contactList}
         title={title}
         action={
           selectedContacts.length
