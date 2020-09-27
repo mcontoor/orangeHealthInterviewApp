@@ -10,7 +10,7 @@ import {
 import CtaButton from '../../components/Button/CtaButton';
 import ContactList from '../../components/ContactList/ContactList';
 import Contacts from 'react-native-contacts';
-import {transformPhoneNumbers} from '../../utils';
+import {transformContactDetails} from '../../utils';
 
 const styles = StyleSheet.create({
   body: {
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   loading: {position: 'absolute', top: 0, bottom: 0, right: 0, left: 0},
+  contactListStyle: {flex: 1},
 });
 
 const InviteDoctor = () => {
@@ -32,7 +33,7 @@ const InviteDoctor = () => {
       if (err === 'denied') {
         console.warn('Permission to access contacts was denied');
       } else {
-        setContactList(contacts.map(transformPhoneNumbers));
+        setContactList(contacts.map(transformContactDetails));
         setIsLoading(false);
       }
     });
@@ -68,6 +69,8 @@ const InviteDoctor = () => {
             onPress: () => console.log('call'),
           }}
           showSelectedCount={true}
+          allowMultipleSelect
+          containerStyle={styles.contactListStyle}
         />
       )}
     </View>
