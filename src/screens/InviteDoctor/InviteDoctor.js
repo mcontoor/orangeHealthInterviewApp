@@ -5,10 +5,12 @@ import {
   StyleSheet,
   PermissionsAndroid,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import CtaButton from '../../components/Button/CtaButton';
 import ContactList from '../../components/ContactList/ContactList';
 import Contacts from 'react-native-contacts';
+import {transformPhoneNumbers} from '../../utils';
 
 const styles = StyleSheet.create({
   body: {
@@ -29,34 +31,27 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Medium',
     fontSize: 16,
   },
+  loading: {position: 'absolute', top: 0, bottom: 0, right: 0, left: 0},
 });
 
 const InviteDoctor = () => {
-  const [selectedContacts, setSelectedContacts] = useState([]);
-
   const title = (
     <View style={styles.titleStyle}>
       <Text style={styles.inviteTextStyle}>Invite Contacts</Text>
-      <Text style={styles.contactsTextStyle}>
-        {selectedContacts.length} contact selected
-      </Text>
+      <Text style={styles.contactsTextStyle}>0 contact selected</Text>
     </View>
   );
 
-  const onSelectContact = useCallback(
-    (contact) =>
-      setSelectedContacts((prevContactList) => [...prevContactList, contact]),
-    [],
-  );
-
   const [contactList, setContactList] = useState([]);
+  const [loading, setIsLoading] = useState(true);
 
   const loadContacts = useCallback(() => {
     Contacts.getAll((err, contacts) => {
       if (err === 'denied') {
         console.warn('Permission to access contacts was denied');
       } else {
-        setContactList(contacts);
+        setContactList(contacts.map(transformPhoneNumbers));
+        setIsLoading(false);
       }
     });
   }, []);
@@ -77,20 +72,21 @@ const InviteDoctor = () => {
     }
   }, [loadContacts]);
 
-  console.log(contactList[10]);
-
   return (
     <View style={styles.body}>
       <CtaButton />
-      <ContactList
-        contacts={contactList}
-        title={title}
-        action={
-          selectedContacts.length
-            ? {title: 'Call the doc', onPress: () => console.log('call')}
-            : undefined
-        }
-      />
+      {loading ? (
+        <ActivityIndicator style={styles.loading} color="#ff970a" />
+      ) : (
+        <ContactList
+          contacts={contactList}
+          title={title}
+          action={{
+            title: 'Invite on Platform',
+            onPress: () => console.log('call'),
+          }}
+        />
+      )}
     </View>
   );
 };
