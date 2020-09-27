@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import SearchBar from '../SearchBar/SearchBar';
 import Button from '../Button/Button';
+import Contact from '../Contact/Contact';
 
 const styles = StyleSheet.create({
   body: {
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ContactList = ({title, action}) => {
+const ContactList = ({title, action, contacts}) => {
   const [searchString, setSearchString] = useState('');
 
   return (
@@ -41,7 +42,17 @@ const ContactList = ({title, action}) => {
         onChangeText={setSearchString}
         placeHolder="Search Contacts"
       />
-      <Text>Contact list component</Text>
+      {contacts.length &&
+        contacts.map((contact) => (
+          <Contact
+            key={contact.recordID}
+            name={contact.displayName}
+            thumbnail={contact.hasThumbnail ? contact.thumbnailPath : undefined}
+            number={contact.phoneNumbers[0]?.number}
+            isSelected={false}
+            onPress={() => console.log('asasd')}
+          />
+        ))}
       {action && (
         <Button style={styles.actionButton} onPress={action.onPress}>
           <Text style={styles.actionTextStyle}>{action.title}</Text>
