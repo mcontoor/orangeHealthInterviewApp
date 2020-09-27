@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 import SearchBar from '../SearchBar/SearchBar';
 import Button from '../Button/Button';
 import Contact from '../Contact/Contact';
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     paddingVertical: 23,
     zIndex: 2,
   },
+  listStyle: {width: '100%', marginTop: 14},
 });
 
 const ContactList = ({title, action, contacts}) => {
@@ -42,17 +43,23 @@ const ContactList = ({title, action, contacts}) => {
         onChangeText={setSearchString}
         placeHolder="Search Contacts"
       />
-      {contacts.length &&
-        contacts.map((contact) => (
+      <FlatList
+        style={styles.listStyle}
+        data={contacts}
+        keyExtractor={(item) => item.recordID}
+        renderItem={({item}) => (
           <Contact
-            key={contact.recordID}
-            name={contact.displayName}
-            thumbnail={contact.hasThumbnail ? contact.thumbnailPath : undefined}
-            number={contact.phoneNumbers[0]?.number}
+            key={item.recordID}
+            name={item.displayName}
+            thumbnail={
+              item.hasThumbnail ? {uri: item.thumbnailPath} : undefined
+            }
+            number={item.phoneNumbers[0]?.number}
             isSelected={false}
             onPress={() => console.log('asasd')}
           />
-        ))}
+        )}
+      />
       {action && (
         <Button style={styles.actionButton} onPress={action.onPress}>
           <Text style={styles.actionTextStyle}>{action.title}</Text>
