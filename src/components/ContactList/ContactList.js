@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import SearchBar from '../SearchBar/SearchBar';
 import Button from '../Button/Button';
@@ -7,6 +7,7 @@ import {filterByKeyword} from '../../utils';
 
 const styles = StyleSheet.create({
   body: {
+    flex: 1,
     alignItems: 'center',
     marginTop: 30,
     marginHorizontal: 25,
@@ -50,13 +51,28 @@ const ContactList = ({
   showSelectedCount,
   searchPrefix,
   onSearchByText,
-  error,
   allowMultipleSelect,
-  containerStyle,
+  requiredCharLength,
+  emptyStatePlaceholder,
+  emptySearchPlaceholder,
 }) => {
   const [searchString, setSearchString] = useState('');
 
   const [selectedContacts, setSelectedContacts] = useState({});
+
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (
+      requiredCharLength &&
+      searchString &&
+      searchString.length < requiredCharLength
+    ) {
+      setErrorMessage('Please enter 3 or more characters');
+    } else {
+      setErrorMessage('');
+    }
+  }, [requiredCharLength, searchString]);
 
   const onSelectContact = useCallback(
     (contact) => {
@@ -84,10 +100,9 @@ const ContactList = ({
     [selectedContacts, allowMultipleSelect],
   );
 
-  const filteredContacts = useMemo(
-    () => filterByKeyword(searchString, contacts),
-    [searchString, contacts],
-  );
+  const filteredContacts = useMemo(() => {
+    return filterByKeyword(searchString, contacts, requiredCharLength);
+  }, [searchString, contacts, requiredCharLength]);
 
   const onChangeText = useCallback(
     (text) => {
@@ -99,8 +114,16 @@ const ContactList = ({
 
   const selectedContactsLength = Object.keys(selectedContacts).length;
 
+  const displayEmptyStatePlaceHolder =
+    emptyStatePlaceholder && searchString === '' && !filteredContacts.length;
+
+  const displayEmptySearchPlaceholder =
+    emptySearchPlaceholder &&
+    searchString.length >= requiredCharLength &&
+    !filteredContacts.length;
+
   return (
-    <View style={[styles.body, containerStyle]}>
+    <View style={styles.body}>
       <View style={styles.titleStyle}>
         {title}
         {showSelectedCount && (
@@ -115,25 +138,31 @@ const ContactList = ({
         onChangeText={onChangeText}
         placeHolder="Search Contacts"
         prefix={searchPrefix}
-        error={error}
+        error={errorMessage}
       />
-      <FlatList
-        style={styles.listStyle}
-        data={filteredContacts}
-        keyExtractor={(item) => `${item.id}`}
-        renderItem={({item}) => (
-          <Contact
-            key={item.id}
-            name={item.name}
-            thumbnail={
-              item.hasThumbnail ? {uri: item.thumbnailPath} : undefined
-            }
-            info={item.info}
-            onPress={() => onSelectContact(item)}
-            isSelected={selectedContacts[item.id]}
-          />
-        )}
-      />
+      {displayEmptyStatePlaceHolder ? (
+        emptyStatePlaceholder
+      ) : displayEmptySearchPlaceholder ? (
+        emptySearchPlaceholder
+      ) : (
+        <FlatList
+          style={styles.listStyle}
+          data={filteredContacts}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={({item}) => (
+            <Contact
+              key={item.id}
+              name={item.name}
+              thumbnail={
+                item.hasThumbnail ? {uri: item.thumbnailPath} : undefined
+              }
+              info={item.info}
+              onPress={() => onSelectContact(item)}
+              isSelected={selectedContacts[item.id]}
+            />
+          )}
+        />
+      )}
       {!!selectedContactsLength && (
         <Button style={styles.actionButton} onPress={action.onPress}>
           <Text style={styles.actionTextStyle}>{action.title}</Text>
