@@ -1,6 +1,13 @@
-import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  KeyboardAvoidingView,
+} from 'react-native';
 import ContactList from '../../components/ContactList/ContactList';
+import {transformDrContactDetails} from '../../utils';
 
 const styles = StyleSheet.create({
   body: {
@@ -11,11 +18,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   placeHolderStyle: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   placeHolderTextStyle: {
     fontFamily: 'Montserrat-Bold',
@@ -37,6 +42,13 @@ const styles = StyleSheet.create({
 });
 
 const FindDoctor = () => {
+  const [doctors, setDoctors] = useState([]);
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((data) => setDoctors(data.map(transformDrContactDetails)));
+  }, []);
+
   return (
     <View style={styles.body}>
       <ContactList
@@ -51,20 +63,23 @@ const FindDoctor = () => {
           onPress: () => console.log('connect'),
         }}
         searchPrefix={'@dr.'}
+        allowMultipleSelect={false}
       />
-      {/* {![].length && (
+      {![].length && (
         <View style={styles.placeHolderStyle}>
           <Image
             source={require('../../icons/search_doctor_empty_state.png')}
           />
-          <View style={styles.placeHolderTextContainer}>
+          <KeyboardAvoidingView
+            behavior="position"
+            style={styles.placeHolderTextContainer}>
             <Text style={styles.placeHolderTextStyle}>Find your doctors</Text>
             <Text style={styles.placeHolderMessageStyle}>
               Use the search bar to find your doctors using their orange ID
             </Text>
-          </View>
+          </KeyboardAvoidingView>
         </View>
-      )} */}
+      )}
     </View>
   );
 };
