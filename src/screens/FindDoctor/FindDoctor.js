@@ -41,6 +41,7 @@ const FindDoctor = () => {
         requiredCharLength={3}
         emptyStatePlaceholder={<EmptyStatePlaceholder />}
         emptySearchPlaceholder={<EmptySearchPlaceholder />}
+        searchPlaceholder="username"
       />
     </View>
   );

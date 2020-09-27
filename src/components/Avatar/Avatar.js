@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   img: {
@@ -45,6 +46,12 @@ const Avatar = ({img, placeholder, isSelected}) => {
       {img ? renderImg() : renderPlaceholder()}
     </View>
   );
+};
+
+Avatar.propTypes = {
+  img: PropTypes.object,
+  placeholder: PropTypes.string,
+  isSelected: PropTypes.bool,
 };
 
 export default Avatar;

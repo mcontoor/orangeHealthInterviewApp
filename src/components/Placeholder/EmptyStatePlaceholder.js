@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   placeHolderMessageStyle: {
-    fontFamily: 'Montserrat-Medium',
+    fontFamily: 'Montserrat-Regular',
     lineHeight: 22,
     fontSize: 16,
     textAlign: 'center',

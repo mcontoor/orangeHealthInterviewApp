@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     color: '#616161',
-    width: 225,
+    width: 240,
   },
   addDoctorContainer: {
     backgroundColor: '#ffffff',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingTop: 19,
     paddingBottom: 21,
-    paddingHorizontal: 34,
+    paddingHorizontal: 40,
   },
   addDoctorTitle: {
     fontFamily: 'Montserrat-Medium',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   addDoctorText: {
-    fontFamily: 'Montserrat-Medium',
+    fontFamily: 'Montserrat-Regular',
     lineHeight: 20,
     fontSize: 14,
     textAlign: 'center',
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
     backgroundColor: '#ff970a',
     borderRadius: 10,
-    width: '100%',
     height: 55,
     justifyContent: 'center',
     alignItems: 'center',

@@ -79,6 +79,7 @@ Contact.propTypes = {
   thumbnail: PropTypes.object,
   info: PropTypes.string,
   onPress: PropTypes.func,
+  isSelected: PropTypes.bool,
 };
 
 export default Contact;

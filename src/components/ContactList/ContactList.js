@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import Button from '../Button/Button';
 import Contact from '../Contact/Contact';
 import {filterByKeyword} from '../../utils';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   body: {
@@ -50,11 +51,11 @@ const ContactList = ({
   contacts,
   showSelectedCount,
   searchPrefix,
-  onSearchByText,
   allowMultipleSelect,
   requiredCharLength,
   emptyStatePlaceholder,
   emptySearchPlaceholder,
+  searchPlaceholder,
 }) => {
   const [searchString, setSearchString] = useState('');
 
@@ -104,14 +105,6 @@ const ContactList = ({
     return filterByKeyword(searchString, contacts, requiredCharLength);
   }, [searchString, contacts, requiredCharLength]);
 
-  const onChangeText = useCallback(
-    (text) => {
-      setSearchString(text);
-      onSearchByText && onSearchByText(text);
-    },
-    [onSearchByText],
-  );
-
   const selectedContactsLength = Object.keys(selectedContacts).length;
 
   const displayEmptyStatePlaceHolder =
@@ -135,8 +128,8 @@ const ContactList = ({
 
       <SearchBar
         value={searchString}
-        onChangeText={onChangeText}
-        placeHolder="Search Contacts"
+        onChangeText={setSearchString}
+        placeHolder={searchPlaceholder}
         prefix={searchPrefix}
         error={errorMessage}
       />
@@ -170,6 +163,23 @@ const ContactList = ({
       )}
     </View>
   );
+};
+
+ContactList.propTypes = {
+  title: PropTypes.element,
+  action: PropTypes.object,
+  contacts: PropTypes.array,
+  showSelectedCount: PropTypes.bool,
+  searchPrefix: PropTypes.string,
+  allowMultipleSelect: PropTypes.bool,
+  requiredCharLength: PropTypes.number,
+  emptyStatePlaceholder: PropTypes.element,
+  emptySearchPlaceholder: PropTypes.element,
+  searchPlaceholder: PropTypes.string,
+};
+
+ContactList.defaultProps = {
+  searchPlaceholder: 'Search Contacts',
 };
 
 export default ContactList;

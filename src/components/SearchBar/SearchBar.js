@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, TextInput, Image, Text, Keyboard} from 'react-native';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   container: {
@@ -56,6 +57,14 @@ const SearchBar = ({value, onChangeText, placeHolder, prefix, error}) => {
       {!!error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
+};
+
+SearchBar.propTypes = {
+  value: PropTypes.string,
+  onChangeText: PropTypes.func,
+  placeHolder: PropTypes.string,
+  prefix: PropTypes.string,
+  error: PropTypes.string,
 };
 
 export default SearchBar;
