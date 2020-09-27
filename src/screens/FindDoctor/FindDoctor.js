@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import ContactList from '../../components/ContactList/ContactList';
 import {transformDrContactDetails} from '../../utils';
 
@@ -70,14 +64,12 @@ const FindDoctor = () => {
           <Image
             source={require('../../icons/search_doctor_empty_state.png')}
           />
-          <KeyboardAvoidingView
-            behavior="position"
-            style={styles.placeHolderTextContainer}>
+          <View style={styles.placeHolderTextContainer}>
             <Text style={styles.placeHolderTextStyle}>Find your doctors</Text>
             <Text style={styles.placeHolderMessageStyle}>
               Use the search bar to find your doctors using their orange ID
             </Text>
-          </KeyboardAvoidingView>
+          </View>
         </View>
       )}
     </View>
