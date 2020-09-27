@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 30,
     marginHorizontal: 17,
     marginBottom: 20,
     paddingHorizontal: 8,

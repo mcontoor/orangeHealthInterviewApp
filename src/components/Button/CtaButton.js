@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffe8ca',
     height: 70,
     justifyContent: 'center',
+    marginBottom: 30,
   },
   ctaButtonView: {
     flexDirection: 'row',

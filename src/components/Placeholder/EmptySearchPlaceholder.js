@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   addDoctorContainer: {
     backgroundColor: '#ffffff',
     elevation: 12,
-    width: '100%',
+    width: '103%',
     marginTop: 70,
     justifyContent: 'center',
     alignItems: 'center',
