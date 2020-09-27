@@ -31,9 +31,20 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   listStyle: {width: '100%', marginTop: 14},
+  titleStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 13,
+    alignItems: 'center',
+  },
+  contactsTextStyle: {
+    fontFamily: 'Montserrat-Medium',
+    fontSize: 14,
+  },
 });
 
-const ContactList = ({title, action, contacts}) => {
+const ContactList = ({title, action, contacts, showSelectedCount}) => {
   const [searchString, setSearchString] = useState('');
 
   const [selectedContacts, setSelectedContacts] = useState({});
@@ -63,7 +74,15 @@ const ContactList = ({title, action, contacts}) => {
 
   return (
     <View style={styles.body}>
-      {title}
+      <View style={styles.titleStyle}>
+        {title}
+        {showSelectedCount && (
+          <Text style={styles.contactsTextStyle}>
+            {selectedContactsLength} contact selected
+          </Text>
+        )}
+      </View>
+
       <SearchBar
         value={searchString}
         onChangeText={setSearchString}

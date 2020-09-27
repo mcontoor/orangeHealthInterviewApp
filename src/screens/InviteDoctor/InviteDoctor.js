@@ -16,17 +16,6 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
   },
-  contactsTextStyle: {
-    fontFamily: 'Montserrat-Medium',
-    fontSize: 14,
-  },
-  titleStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginBottom: 13,
-    alignItems: 'center',
-  },
   inviteTextStyle: {
     fontFamily: 'Montserrat-Medium',
     fontSize: 16,
@@ -35,13 +24,6 @@ const styles = StyleSheet.create({
 });
 
 const InviteDoctor = () => {
-  const title = (
-    <View style={styles.titleStyle}>
-      <Text style={styles.inviteTextStyle}>Invite Contacts</Text>
-      <Text style={styles.contactsTextStyle}>0 contact selected</Text>
-    </View>
-  );
-
   const [contactList, setContactList] = useState([]);
   const [loading, setIsLoading] = useState(true);
 
@@ -80,11 +62,12 @@ const InviteDoctor = () => {
       ) : (
         <ContactList
           contacts={contactList}
-          title={title}
+          title={<Text style={styles.inviteTextStyle}>Invite Contacts</Text>}
           action={{
             title: 'Invite on Platform',
             onPress: () => console.log('call'),
           }}
+          showSelectedCount={true}
         />
       )}
     </View>
