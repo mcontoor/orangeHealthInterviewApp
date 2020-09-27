@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, TextInput, Image, Text} from 'react-native';
+import {View, StyleSheet, TextInput, Image, Text, Keyboard} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,6 +49,7 @@ const SearchBar = ({value, onChangeText, placeHolder, prefix, error}) => {
           onChangeText={onChangeText}
           placeholder={placeHolder}
           placeholderTextColor="#616161"
+          onBlur={() => Keyboard.dismiss()}
         />
         <Image source={require('../../icons/search_icon.png')} />
       </View>
