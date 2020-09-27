@@ -1,7 +1,8 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import Button from '../Button/Button';
 import Avatar from '../Avatar/Avatar';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   contactStyle: {
@@ -24,6 +25,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#1c1c1c',
   },
+  username: {
+    color: '#ff970a',
+  },
   number: {
     fontFamily: 'Montserrat-Regular',
     fontSize: 12,
@@ -31,8 +35,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Contact = ({name, thumbnail, number, onPress}) => {
-  const [isSelected, setIsSelected] = useState(false);
+const Contact = ({name, thumbnail, info, onPress, isSelected}) => {
   const unSelectedIcon = (
     <Image source={require('../../icons/unchecked_selection.png')} />
   );
@@ -41,8 +44,7 @@ const Contact = ({name, thumbnail, number, onPress}) => {
   );
 
   const onSelectContact = useCallback(() => {
-    setIsSelected((prevSelection) => !prevSelection);
-    onPress();
+    onPress && onPress();
   }, [onPress]);
 
   const placeholder = name
@@ -53,14 +55,30 @@ const Contact = ({name, thumbnail, number, onPress}) => {
     .toUpperCase();
   return (
     <Button style={styles.contactStyle} onPress={onSelectContact}>
-      <Avatar img={thumbnail} placeholder={placeholder} />
+      <Avatar
+        img={thumbnail}
+        placeholder={placeholder}
+        isSelected={isSelected}
+      />
       <View style={styles.contactInfo}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.number}>{number}</Text>
+        <Text
+          style={
+            name.includes('@dr') ? [styles.name, styles.username] : styles.name
+          }>
+          {name}
+        </Text>
+        <Text style={styles.number}>{info}</Text>
       </View>
       {isSelected ? selectedIcon : unSelectedIcon}
     </Button>
   );
+};
+
+Contact.propTypes = {
+  name: PropTypes.string,
+  thumbnail: PropTypes.object,
+  info: PropTypes.string,
+  onPress: PropTypes.func,
 };
 
 export default Contact;
