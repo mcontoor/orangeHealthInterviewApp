@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import ContactList from '../../components/ContactList/ContactList';
 import {transformDrContactDetails} from '../../utils';
+import EmptyStatePlaceholder from '../../components/Placeholder/EmptyStatePlaceholder';
+import EmptySearchPlaceholder from '../../components/Placeholder/EmptySearchPlaceholder';
 
 const styles = StyleSheet.create({
   body: {
@@ -10,28 +12,6 @@ const styles = StyleSheet.create({
   inviteTextStyle: {
     fontFamily: 'Montserrat-Medium',
     fontSize: 18,
-  },
-  placeHolderStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  placeHolderTextStyle: {
-    fontFamily: 'Montserrat-Bold',
-    lineHeight: 22,
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  placeHolderMessageStyle: {
-    fontFamily: 'Montserrat-Medium',
-    lineHeight: 22,
-    fontSize: 16,
-    textAlign: 'center',
-    color: '#616161',
-  },
-  placeHolderTextContainer: {
-    marginTop: 39,
-    marginHorizontal: 30,
   },
 });
 
@@ -51,27 +31,17 @@ const FindDoctor = () => {
             Search by Orange ID or name
           </Text>
         }
-        contacts={[]}
+        contacts={doctors}
         action={{
           title: 'Connect with doctor',
           onPress: () => console.log('connect'),
         }}
         searchPrefix={'@dr.'}
         allowMultipleSelect={false}
+        requiredCharLength={3}
+        emptyStatePlaceholder={<EmptyStatePlaceholder />}
+        emptySearchPlaceholder={<EmptySearchPlaceholder />}
       />
-      {![].length && (
-        <View style={styles.placeHolderStyle}>
-          <Image
-            source={require('../../icons/search_doctor_empty_state.png')}
-          />
-          <View style={styles.placeHolderTextContainer}>
-            <Text style={styles.placeHolderTextStyle}>Find your doctors</Text>
-            <Text style={styles.placeHolderMessageStyle}>
-              Use the search bar to find your doctors using their orange ID
-            </Text>
-          </View>
-        </View>
-      )}
     </View>
   );
 };

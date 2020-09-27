@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   loading: {position: 'absolute', top: 0, bottom: 0, right: 0, left: 0},
-  contactListStyle: {flex: 1},
 });
 
 const InviteDoctor = () => {
@@ -70,7 +69,7 @@ const InviteDoctor = () => {
           }}
           showSelectedCount={true}
           allowMultipleSelect
-          containerStyle={styles.contactListStyle}
+          requiredCharLength={0}
         />
       )}
     </View>
