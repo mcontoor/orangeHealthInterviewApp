@@ -1,7 +1,8 @@
-import React, {useCallback, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useCallback, useState, useEffect} from 'react';
+import {View, Text, StyleSheet, PermissionsAndroid} from 'react-native';
 import CtaButton from '../../components/Button/CtaButton';
 import ContactList from '../../components/ContactList/ContactList';
+import Contacts from 'react-native-contacts';
 
 const styles = StyleSheet.create({
   body: {
@@ -42,10 +43,35 @@ const InviteDoctor = () => {
     [],
   );
 
+  const [contactList, setContactList] = useState([]);
+
+  useEffect(() => {
+    PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_CONTACTS, {
+      title: 'Contacts',
+      message: 'This app would like to view your contacts.',
+      buttonPositive: 'Please accept bare mortal',
+    })
+      .then(() => {
+        Contacts.getAll((err, contacts) => {
+          if (err === 'denied') {
+            // error
+            console.log(err);
+          } else {
+            // contacts returned in Array
+            setContactList(contacts);
+          }
+        });
+      })
+      .catch((e) => console.log(e));
+  }, []);
+
+  console.log(contactList[10]);
+
   return (
     <View style={styles.body}>
       <CtaButton />
       <ContactList
+        contacts={[contactList[0], contactList[1], contactList[2]]}
         title={title}
         action={
           selectedContacts.length
