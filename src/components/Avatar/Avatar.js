@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   img: {
     borderRadius: 40,
     alignSelf: 'center',
+    resizeMode: 'contain',
   },
   container: {
     width: 40,
@@ -18,23 +19,26 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Bold',
     color: '#ffffff',
   },
+  selectedStyle: {
+    borderWidth: 2,
+    borderColor: '#01b37a',
+  },
 });
 
-const Avatar = ({img, placeholder}) => {
+const Avatar = ({img, placeholder, isSelected}) => {
   const renderImg = () => {
     return <Image style={styles.img} source={img} />;
   };
 
   const renderPlaceholder = () => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.placeholder}>{placeholder}</Text>
-      </View>
-    );
+    return <Text style={styles.placeholder}>{placeholder}</Text>;
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={
+        isSelected ? [styles.container, styles.selectedStyle] : styles.container
+      }>
       {img ? renderImg() : renderPlaceholder()}
     </View>
   );
