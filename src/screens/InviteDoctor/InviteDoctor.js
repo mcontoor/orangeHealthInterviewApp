@@ -4,6 +4,9 @@ import CtaButton from '../../components/Button/CtaButton';
 import ContactList from '../../components/ContactList/ContactList';
 
 const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+  },
   contactsTextStyle: {
     fontFamily: 'Montserrat-Medium',
     fontSize: 14,
@@ -40,9 +43,16 @@ const InviteDoctor = () => {
   );
 
   return (
-    <View>
+    <View style={styles.body}>
       <CtaButton />
-      <ContactList title={title} />
+      <ContactList
+        title={title}
+        action={
+          selectedContacts.length
+            ? {title: 'Call the doc', onPress: () => console.log('call')}
+            : undefined
+        }
+      />
     </View>
   );
 };

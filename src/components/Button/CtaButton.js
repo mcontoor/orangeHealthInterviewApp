@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingLeft: 21,
-    paddingRight: 10,
+    paddingRight: 19,
   },
   ctaButtonText: {
     fontFamily: 'Montserrat-Medium',
