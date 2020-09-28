@@ -123,6 +123,12 @@ const ContactList = ({
     }
   }, [displayEmptySearchPlaceholder]);
 
+  useEffect(() => {
+    if (errorMessage) {
+      setSelectedContacts({});
+    }
+  }, [errorMessage]);
+
   return (
     <View style={styles.body}>
       <View style={styles.titleStyle}>
